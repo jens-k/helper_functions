@@ -73,13 +73,13 @@ for ch = 1:nch
 	plot(SED.objects.axes(ch), x, SED.data(chns(ch),pos:pos+len-1));
 	mi = min(SED.data(chns(ch),pos:pos+len-1));
 	ma = max(SED.data(chns(ch),pos:pos+len-1));
-	if mi>SED.display.ranges(chns(ch)) || ma<-SED.display.ranges(chns(ch))
-		SED.objects.axes(ch).YLim = [mi ma];
-		SED.objects.axes(ch).YColor = 'r';
-	else
+% 	if mi>SED.display.ranges(chns(ch)) || ma<-SED.display.ranges(chns(ch))
+% 		SED.objects.axes(ch).YLim = [mi ma]; % 
+% 		SED.objects.axes(ch).YColor = 'r';
+% 	else
 		SED.objects.axes(ch).YLim =  [-SED.display.ranges(chns(ch)) SED.display.ranges(chns(ch))];
 		SED.objects.axes(ch).YColor = plotcolor;
-	end
+% 	end
 	SED.objects.axes(ch).Box = 'off';
 	SED.objects.axes(ch).GridColorMode = 'manual';
 	SED.objects.axes(ch).GridColor = [0 0 0];
@@ -989,6 +989,7 @@ SED.display.ranges(SED.header.iseog) = quantile(abs(SED.data(SED.header.iseog,:)
 egc = ~(SED.header.isemg | SED.header.iseog);
 SED.display.ranges(egc) = quantile(abs(reshape(SED.data(egc,:),sum(egc)*size(SED.data,2),1)),0.99,1);
 SED.display.hiddenchans = zeros(SED.header.commoninfos.numberofchannels,1);
+SED.display.ranges(egc) = deal(200); % CHANGED BY JENS: Use static ylim
 fprintf(' done.\n');
 ok = true;
 end
