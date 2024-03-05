@@ -46,6 +46,7 @@ try
 	%% Close the text file.
 	fclose(fileID);
 catch
+	fclose('all');
 	% Try a different way
 	
 	%% Setup the Import Options and import the data
