@@ -23,7 +23,7 @@ for iVal = 1:numel(in)
 		counter = counter + 1;
 	end
 end
-sprintf('Rejected %s values (ic_outlier_rej).', num2str(counter))
+warning('Rejected %s values (ic_outlier_rej).', num2str(counter))
 
 
 
